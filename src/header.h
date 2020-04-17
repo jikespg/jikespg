@@ -49,7 +49,7 @@ void padline(void);
 void nospace(char *, long);
 int number_len(int state_no);
 void partset(SET_PTR collection, short *element_size, short *list,
-             short *start, short *stack, int set_size);
+             short *start, short *stack, int set_size, int from_process_scopes);
 void print_item(int item_no);
 void print_large_token(char *line, char *token, char *indent, int len);
 void print_state(int state_no);

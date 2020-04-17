@@ -127,7 +127,7 @@
 #ifdef DOS
 #define IOBUFFER_SIZE 8192
 #else
-#define IOBUFFER_SIZE 65536
+#define IOBUFFER_SIZE 655360
 #endif
 
 /*******************************************************************/

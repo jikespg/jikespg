@@ -418,7 +418,7 @@ look_for_match_in_table:
     PRNT(msg_line);
 
     sprintf(msg_line,
-            "Number of entries in Action Table: %d", num_entries);
+            "Number of entries in Action Table: %ld", num_entries);
     PRNT(msg_line);
 
     percentage = ((action_size - num_entries) * 1000) / num_entries;
@@ -517,7 +517,7 @@ static void print_tables(void)
     if (offset > (MAX_TABLE_SIZE + 1))
     {
         sprintf(msg_line, "Table contains entries that are > "
-                "%d; Processing stopped.", MAX_TABLE_SIZE + 1);
+                "%ld; Processing stopped.", MAX_TABLE_SIZE + 1);
         PRNTERR(msg_line);
         exit(12);
     }
@@ -600,7 +600,7 @@ static void print_tables(void)
             {
                 sprintf(msg_line,
                     "Table contains look-ahead shift entry that is >"
-                    " %d; Processing stopped.", MAX_TABLE_SIZE + 1);
+                    " %ld; Processing stopped.", MAX_TABLE_SIZE + 1);
                 PRNTERR(msg_line);
                 return;
             }

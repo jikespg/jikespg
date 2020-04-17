@@ -1610,7 +1610,8 @@ static void print_xref(void)
                              strcat(line, BLANK);
                     }
                     strcat(line, tok);
-                    strcat(line, BLANK);
+                    if (strlen(line) < PRINT_LINE_SIZE)
+                        strcat(line, BLANK);
                 }
                 fprintf(syslis, "\n%s", line);
                 ENDPAGE_CHECK;
@@ -1634,7 +1635,8 @@ static void print_xref(void)
                              strcat(line, BLANK);
                     }
                     strcat(line, tok);
-                    strcat(line, BLANK);
+                    if (strlen(line) < PRINT_LINE_SIZE)
+                        strcat(line, BLANK);
                 }
                 fprintf(syslis, "\n%s",line);
                 ENDPAGE_CHECK;

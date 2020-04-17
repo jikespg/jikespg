@@ -70,7 +70,7 @@ static BOOLEAN equal_sets(SET_PTR set1, int indx1,
 /*********************************************************************/
 void partset(SET_PTR collection,
              short *element_size, short *list,
-             short *start, short *stack, int set_size)
+             short *start, short *stack, int set_size, int from_scope_processing)
 {
     unsigned long hash_address;
 
@@ -99,7 +99,15 @@ void partset(SET_PTR collection,
     SET_PTR temp_set;
 
     collection_size = num_states;
-    if (set_size == num_terminals)
+
+    if (from_scope_processing)
+    {
+        bctype = num_states / SIZEOF_BC
+                            + (num_states % SIZEOF_BC ? 1 : 0);
+        collection_size = set_size;
+        set_size = num_states;
+    }
+    else if (set_size == num_terminals)
     {
         bctype = term_set_size;
         collection_size = num_states;
@@ -109,13 +117,7 @@ void partset(SET_PTR collection,
         bctype = non_term_set_size;
         collection_size = num_states;
     }
-    else /* called from scope processing */
-    {
-        bctype = num_states / SIZEOF_BC
-                            + (num_states % SIZEOF_BC ? 1 : 0);
-        collection_size = set_size;
-        set_size = num_states;
-    }
+
     size_list = Allocate_short_array(set_size + 1);
     partition = Allocate_short_array(set_size + 1);
     domain_link = Allocate_short_array(collection_size + 1);

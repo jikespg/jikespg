@@ -248,7 +248,7 @@ int main(int argc, char *argv[])
             PRNT(msg_line);
         }
 
-        sprintf(msg_line, "Number of Items: %d", num_items);
+        sprintf(msg_line, "Number of Items: %ld", num_items);
         PRNT(msg_line);
 
         fclose(syslis);      /* close listing file */
@@ -282,7 +282,7 @@ int main(int argc, char *argv[])
         PRNT(msg_line);
     }
 
-    sprintf(msg_line, "Number of Items: %d", num_items);
+    sprintf(msg_line, "Number of Items: %ld", num_items);
     PRNT(msg_line);
     if (scopes_bit)
     {
@@ -290,43 +290,43 @@ int main(int argc, char *argv[])
         PRNT(msg_line);
     }
 
-    sprintf(msg_line, "Number of States: %d", num_states);
+    sprintf(msg_line, "Number of States: %ld", num_states);
     PRNT(msg_line);
 
     if (max_la_state > num_states)
     {
         sprintf(msg_line,
-                "Number of look-ahead states: %d",
+                "Number of look-ahead states: %ld",
                 max_la_state - num_states);
         PRNT(msg_line);
     }
 
-    sprintf(msg_line, "Number of Shift actions: %d", num_shifts);
+    sprintf(msg_line, "Number of Shift actions: %ld", num_shifts);
     PRNT(msg_line);
 
-    sprintf(msg_line, "Number of Goto actions: %d", num_gotos);
+    sprintf(msg_line, "Number of Goto actions: %ld", num_gotos);
     PRNT(msg_line);
 
     if (read_reduce_bit)
     {
         sprintf(msg_line,
-                "Number of Shift/Reduce actions: %d", num_shift_reduces);
+                "Number of Shift/Reduce actions: %ld", num_shift_reduces);
         PRNT(msg_line);
 
         sprintf(msg_line,
-                "Number of Goto/Reduce actions: %d", num_goto_reduces);
+                "Number of Goto/Reduce actions: %ld", num_goto_reduces);
         PRNT(msg_line);
     }
 
-    sprintf(msg_line, "Number of Reduce actions: %d", num_reductions);
+    sprintf(msg_line, "Number of Reduce actions: %ld", num_reductions);
     PRNT(msg_line);
 
     sprintf(msg_line,
-           "Number of Shift-Reduce conflicts: %d", num_sr_conflicts);
+           "Number of Shift-Reduce conflicts: %ld", num_sr_conflicts);
     PRNT(msg_line);
 
     sprintf(msg_line,
-            "Number of Reduce-Reduce conflicts: %d", num_rr_conflicts);
+            "Number of Reduce-Reduce conflicts: %ld", num_rr_conflicts);
     PRNT(msg_line);
 
     /**********************************************************/

@@ -36,12 +36,12 @@ static void print_name_map(int symbol);
 static void process_scopes(void);
 static BOOLEAN is_scope(int item_no);
 static BOOLEAN scope_check(int lhs_symbol, int target, int source);
-static insert_prefix(int item_no);
+static int insert_prefix(int item_no);
 static BOOLEAN is_prefix_equal(int item_no, int item_no2);
-static insert_suffix(int item_no);
+static int insert_suffix(int item_no);
 static BOOLEAN is_suffix_equal(int item_no1, int item_no2);
 static void print_scopes(void);
-static get_shift_symbol(int lhs_symbol);
+static int get_shift_symbol(int lhs_symbol);
 
 /****************************************************************************/
 /*                              PRODUCE:                                    */
@@ -869,7 +869,7 @@ process_scope_states:
             }
         }
 
-        partset(collection, element_size, list, start, stack, num_state_sets);
+        partset(collection, element_size, list, start, stack, num_state_sets, 1);
 
         for (i = 1; i <= num_state_sets; i++)
         {
@@ -1175,7 +1175,7 @@ static BOOLEAN scope_check(int lhs_symbol, int target, int source)
 /* table, the prefix of a given item, ITEM_NO, is encoded as         */
 /* -ITEM_NO, whereas the suffix of that item is encoded as +ITEM_NO. */
 /*********************************************************************/
-static insert_prefix(int item_no)
+static int insert_prefix(int item_no)
 {
     int i,
         j,
@@ -1252,7 +1252,7 @@ static BOOLEAN is_prefix_equal(int item_no, int item_no2)
 /* When inserting a suffix into the table, all nullable nonterminals */
 /* in the suffix are disregarded.                                    */
 /*********************************************************************/
-static insert_suffix(int item_no)
+static int insert_suffix(int item_no)
 {
     int i,
         j,
@@ -1478,7 +1478,7 @@ static void print_scopes(void)
 /* LHS_SYMBOL can rightmost produce a string tX.  If so, t is        */
 /* returned, otherwise EMPTY is returned.                            */
 /*********************************************************************/
-static get_shift_symbol(int lhs_symbol)
+static int get_shift_symbol(int lhs_symbol)
 {
     int item_no,
         rule_no,

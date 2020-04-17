@@ -978,7 +978,7 @@ void nospace(char *file_name, long line_number)
 {
     fprintf(stderr,
             "*** Cannot allocate space ... LPG terminated in "
-            "file %s at line %d\n", file_name, line_number);
+            "file %s at line %ld\n", file_name, line_number);
     exit(12);
 }
 

@@ -392,7 +392,8 @@ static void options(void)
 
     while (parm[i] != '\0')     /* Repeat until parm line is exhausted */
     {
-        strcpy(parm, parm + i);       /* Remove garbage in front */
+        /* Remove garbage in front */
+        memmove(parm, parm + i, strlen (parm + i) + 1);
 
         i = 0;
 
@@ -442,7 +443,8 @@ static void options(void)
             {                                  /* prefix?         */
                 flag = FALSE;
                 len = len-2;
-                strcpy(token, token + 2);  /* get rid of "NO" prefix */
+                /* get rid of "NO" prefix */
+                memmove(token, token + 2, strlen(token + 2) + 1);
             }
             else
                 flag = TRUE;
@@ -1540,7 +1542,7 @@ static void insert_string(struct hash_type *q, char *string)
     }
 
     q -> st_ptr = string_offset;
-    while(string_table[string_offset++] = *string++); /* Copy until NULL */
+    while((string_table[string_offset++] = *string++)); /* Copy until NULL */
                                                       /* is copied.      */
     return;
 }
@@ -1919,7 +1921,7 @@ scan_token:
                 tok_string[i] = '\0';
                 sprintf(msg_line,
                         "Symbol \"%s\""
-                        " has been referenced in line %d "
+                        " has been referenced in line %ld "
                         " without the closing \">\"",
                         tok_string, ct_start_line);
                 PRNTERR(msg_line);
@@ -1949,7 +1951,7 @@ scan_token:
                 memcpy(tok_string, p1, ct_length);
                 tok_string[ct_length] = '\0';
                 sprintf(msg_line,
-                        "Symbol \"%s\" referenced in line %d"
+                        "Symbol \"%s\" referenced in line %ld"
                         " requires a closing quote",
                         tok_string, ct_start_line);
                 PRNTWNG(msg_line);
@@ -3099,7 +3101,7 @@ static void mapmacro(int def_index)
         strcmp(defelmt[def_index].name, knext_line)         == 0)
     {
         sprintf(msg_line, "predefined macro \"%s\""
-                          " cannot be redefined. Line %d",
+                          " cannot be redefined. Line %ld",
                           defelmt[def_index].name,
                           defelmt[def_index].start_line);
         PRNTWNG(msg_line);
@@ -3114,7 +3116,7 @@ static void mapmacro(int def_index)
             if (warnings_bit)
             {
                 sprintf(msg_line, "Redefinition of macro \"%s\""
-                                  " in line %d",
+                                  " in line %ld",
                                   defelmt[def_index].name,
                                   defelmt[def_index].start_line);
                 PRNTWNG(msg_line);
@@ -3376,7 +3378,11 @@ static void display_input(void)
         }
         else
             strcat(line, temp);
-        strcat(line, BLANK);
+
+        if (strlen(line) < PRINT_LINE_SIZE)
+        {
+            strcat(line, BLANK);
+        }
     }
     fprintf(syslis, "\n%s", line);
     ENDPAGE_CHECK;
@@ -3401,7 +3407,8 @@ static void display_input(void)
                 strncat(line, temp, PRINT_LINE_SIZE - 12);
                 fprintf(syslis, "\n%s", line);
                 ENDPAGE_CHECK;
-                strcpy(temp, temp + (PRINT_LINE_SIZE - 12));
+                memmove(temp, temp + (PRINT_LINE_SIZE - 12),
+                        sizeof(temp) - (PRINT_LINE_SIZE - 12));
                 i = PRINT_LINE_SIZE - 12;
                 print_large_token(line, temp, "       ", i);
             }
@@ -3429,7 +3436,8 @@ static void display_input(void)
                     strncat(line, temp, PRINT_LINE_SIZE - 12);
                     fprintf(syslis, "\n%s", line);
                     ENDPAGE_CHECK;
-                    strcpy(temp, temp + (PRINT_LINE_SIZE - 12));
+                    memmove(temp, temp + (PRINT_LINE_SIZE - 12),
+                            sizeof(temp) - (PRINT_LINE_SIZE - 12));
                     i = PRINT_LINE_SIZE - 12;
                     print_large_token(line, temp, "       ", i);
                 }

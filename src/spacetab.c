@@ -301,7 +301,7 @@ look_for_match_in_base_table:
     sprintf(msg_line,"Length of base Action Table: %ld", action_size);
     PRNT(msg_line);
 
-    sprintf(msg_line,"Number of entries in base Action Table: %d",
+    sprintf(msg_line,"Number of entries in base Action Table: %ld",
             num_table_entries);
     PRNT(msg_line);
 
@@ -861,7 +861,7 @@ look_for_match_in_sh_chk_tab:
     sprintf(msg_line,"Length of Shift Check Table: %d",shift_check_size);
     PRNT(msg_line);
 
-    sprintf(msg_line,"Number of entries in Shift Check Table: %d",
+    sprintf(msg_line,"Number of entries in Shift Check Table: %ld",
             num_table_entries);
     PRNT(msg_line);
 
@@ -1513,7 +1513,7 @@ look_for_match_in_term_table:
                       term_action_size);
     PRNT(msg_line);
 
-    sprintf(msg_line, "Number of entries in Terminal Action Table: %d",
+    sprintf(msg_line, "Number of entries in Terminal Action Table: %ld",
                       num_table_entries);
     PRNT(msg_line);
 
@@ -1615,7 +1615,7 @@ static void print_tables(void)
     if (offset > (MAX_TABLE_SIZE + 1))
     {
         sprintf(msg_line, "Table contains entries that are > "
-                "%d; Processing stopped.", MAX_TABLE_SIZE + 1);
+                "%ld; Processing stopped.", MAX_TABLE_SIZE + 1);
         PRNTERR(msg_line);
         exit(12);
     }
@@ -1910,7 +1910,7 @@ static void print_tables(void)
                 {
                     sprintf(msg_line,
                         "Table contains look-ahead shift entry that is >"
-                        " %d; Processing stopped.", MAX_TABLE_SIZE + 1);
+                        " %ld; Processing stopped.", MAX_TABLE_SIZE + 1);
                     PRNTERR(msg_line);
                     return;
                 }
@@ -2162,7 +2162,7 @@ static void print_tables(void)
             {
                 sprintf(msg_line,
                     "Table contains look-ahead shift entry that is >"
-                    " %d; Processing stopped.", MAX_TABLE_SIZE + 1);
+                    " %ld; Processing stopped.", MAX_TABLE_SIZE + 1);
                 PRNTERR(msg_line);
                 return;
             }
